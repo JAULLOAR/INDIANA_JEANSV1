@@ -1,0 +1,124 @@
+<ion-header>
+  <ion-toolbar>
+    
+    <ion-buttons slot="start">
+      <ionic-button (click)="volverHome()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ionic-button>
+    </ion-buttons>
+   
+    <ion-title>Categorias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- <ion-item *ngFor="let p of categorias" [routerLink]="['/productos']" > 
+ 
+    <ion-list>
+      <ion-list-header>
+        Action
+      </ion-list-header>
+      <ion-item> {{p.nombre}} </ion-item>
+      
+    </ion-list>
+    
+
+  </ion-item> -->
+
+<!--   <ion-grid>
+    <ion-row>
+      
+      <ion-col size="12" style="background-color:rgb(179, 96, 2); border-radius: 0%;" >
+        <div class="ion-text-center" >
+          <h2 style="color: white;"> DESCUENTOS CYBERDAY  </h2>
+          <p style="color: white;"> hasta un 50% de descuento  </p>
+        </div>        
+      </ion-col>
+      
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid  *ngFor="let p of categorias">
+    <ion-row  >
+      <ion-col size="1"></ion-col>
+      <ion-col size="5" style="background-color: rgb(255, 255, 255);">
+        <div class="ion-text-center">
+          <h2 style="font-size: 18px;"> {{p.nombre}} </h2>
+        </div>
+      </ion-col >
+      <ion-col size="5"style="background-color: rgb(255, 255, 255);">
+         <img src="{{p.imagen}}" alt="">
+      </ion-col>
+      <ion-col size="1"></ion-col>
+      
+    </ion-row>
+  </ion-grid>
+ -->
+ 
+<ion-grid>
+    <ion-row>
+      <ion-col size="0.5"></ion-col>
+      <ion-col size="11" id="banner"> <h1> CYBERDAY</h1> <p> Hasta un 50% de descuento </p> </ion-col>
+      <ion-col size="0.5"></ion-col>
+            
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngFor="let p of categorias" [routerLink]="['/productos']">
+    <ion-row>
+      <ion-col size="0.5"></ion-col>
+      <ion-col size="11" >
+
+        <ion-row  >
+          <ion-col size="6" id="banner2" style="background-color: white; border-top-left-radius: 10px; border-bottom-left-radius: 10px;"> 
+            <p style="color: black; font-size: 18px;">{{p.nombre}}</p></ion-col>
+          <ion-col size="6" id="banner2" style="background-image: url({{p.imagen}}); background-repeat: no-repeat; background-size: cover; height: 95px; border-bottom-right-radius: 10px; border-top-right-radius: 10px; ">  </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="0.5"></ion-col>
+            
+    </ion-row>
+  </ion-grid>
+
+  
+
+
+    
+
+
+
+
+
+
+
+
+</ion-content>
+
+<ion-footer id="footer" style="height: 50px;">
+      
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button [routerLink]="['/home']">
+        <ion-icon name="home-outline"></ion-icon>
+        <ion-label>Inicio</ion-label>
+      
+      </ion-tab-button>
+  
+      <ion-tab-button [routerLink]="['/categorias']">
+        <ion-icon name="list-outline"></ion-icon>
+        <ion-label>Categorias</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button [routerLink]="['/productos']">
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-label>Favoritos</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button>
+        <ion-icon name="person-outline"></ion-icon>
+        <ion-label>{{usuario}}</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-footer>

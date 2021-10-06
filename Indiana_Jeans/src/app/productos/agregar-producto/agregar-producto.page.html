@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Agregar Producto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- Default Input -->
+
+<ion-item>
+  <ion-label position="floating" type="text" >Nombre de producto</ion-label>
+  <ion-input #nombre></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label>Select</ion-label>
+  <ion-select class="custom-options" interface="popover" #color>
+    <ion-select-option value="cafe" class="brown-option">Cafe</ion-select-option>
+    <ion-select-option value="negro">Negro</ion-select-option>
+    <ion-select-option value="Rojo">Rojo</ion-select-option>
+  </ion-select>
+</ion-item>
+
+
+<ion-list>
+
+  <!-- <ion-item *ngFor="let check of data">
+    <ion-label> {{check.name}}</ion-label>
+    <ion-checkbox [(ngModel)]="check.selected" (click)="seleccion(check)" #stock></ion-checkbox>
+  </ion-item> -->
+
+  <ion-item>
+    <ion-label> Stock </ion-label>
+    <ion-checkbox [(ngModel)]="seleccion" #stock></ion-checkbox>
+  </ion-item>
+
+
+</ion-list>
+
+
+<ion-item>
+  <ion-label>Producto</ion-label>
+  <ion-input placeholder="Indique precio" type="number" #precio></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating" type="text" >Imagen de producto</ion-label>
+  <ion-input #imagen></ion-input>
+</ion-item>
+
+<section>
+  <header></header>
+  <ion-button expand="block" (click)="agregarP(nombre,color,imagen,stock,precio)">Agregar producto</ion-button>
+</section>
+</ion-content>

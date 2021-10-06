@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar color="blue">
+    
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+   
+    <ion-title>{{datosAr.nombre}} </ion-title>
+
+    <ion-buttons slot="end">
+
+      <ion-button (click)="eliminar()">
+      <ion-icon name="trash-outline"></ion-icon>
+    </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+
+</ion-header>
+
+<ion-content>
+
+
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <!-- <ion-col> </ion-col>
+       <ion-img [src]="datosAr.imagen" id="imagen_producto"> </ion-img>
+      <ion-col> </ion-col> -->
+      <ion-col size="12" id="imagen_producto" style="background-image: url({{datosAr.imagen}});"> </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="0.5"></ion-col>
+      <ion-col size="11"> <h5> Articulo: {{datosAr.nombre}}</h5> </ion-col>
+      <ion-col size="0.5"></ion-col>     
+    </ion-row>
+    
+    <ion-row>
+      <ion-col size="0.5"></ion-col>
+      <ion-col size="11"> <p> It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. </p></ion-col>
+      <ion-col size="0.5"></ion-col>     
+    </ion-row>
+    
+    <ion-row>
+      <ion-col size="0.5"></ion-col>
+      <ion-col size="11"> <p> {{ "Color:" + datosAr.color}} </p></ion-col>
+      <ion-col size="0.5"></ion-col>     
+    </ion-row>
+
+
+
+    <ion-row>
+      <ion-col size="0.5"></ion-col>
+      <ion-col size="11"  *ngIf=" datosAr.stock == true || datosAr.stock == on; else sinStock">
+         <p> Stock: Disponible </p></ion-col>
+         <ion-col> 
+          <ng-template #sinStock> <ion-text> Stock: No Disponible </ion-text> 
+          
+          </ng-template>              
+        </ion-col>
+      <ion-col size="0.5"></ion-col>     
+    </ion-row>
+
+   <!--  <ion-row>
+      
+     
+      
+      <ion-col *ngIf=" datosAr.stock == true || datosAr.stock == 'on'; else sinStock"> Stock: Disponible      
+      </ion-col>
+      <ion-col> 
+        <ng-template #sinStock> <ion-text> Stock: No Disponible </ion-text> 
+        
+        </ng-template>              
+      </ion-col>
+
+    </ion-row> -->
+
+
+  </ion-grid>
+
+  
+
+  <!-- <ion-img [src]="datosAr.imagen"> </ion-img>
+  <ion-text color="dark">
+    <h5>{{datosAr.color}}</h5>
+    <h4>{{datosAr.precio}}</h4>
+  </ion-text>
+  
+ -->
+</ion-content>
+
+<ion-footer>
+
+    
+      <!-- <ion-col size="12" id="comprarProducto"> Comprar por: {{"CLP$" + datosAr.precio.toFixed(3)}} </ion-col> -->
+      
+      <ion-button color="danger" id="boton_comprar" (click)="comprarProducto()" *ngIf="datosAr.stock == on || datosAr.stock == true ; else sinStock_footer "> Comprar por: {{"CLP$" + datosAr.precio}}  </ion-button>
+      <ng-template #sinStock_footer> 
+        <ion-button color="warning"  id="boton_comprar"> Articulo no disponible</ion-button>
+      </ng-template>
+
+</ion-footer>
+
+
+
+
+

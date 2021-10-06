@@ -1,0 +1,35 @@
+ion-content {
+    --ion-background-color: rgb(243, 243, 243);
+}
+
+#banner {
+
+    background-color: rgb(0, 0, 0);
+    height: 95px;
+    border-radius: 15px;
+}
+
+#banner h1, p  {
+    color: white;
+    text-align: center;
+    
+}
+
+#banner p {
+    position: relative;
+    margin-top: 2px;
+}
+
+#imagen_categoria {
+
+    max-width: 100%;
+    margin-bottom: 50px;
+}
+
+#banner2 {
+  width: 284px;
+  padding: 5px 5px 5px 5px;
+  
+  background-color: white;
+  box-shadow: 1px 1px 1px #e2e1e1;
+}

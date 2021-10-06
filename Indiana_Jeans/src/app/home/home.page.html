@@ -1,0 +1,107 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button>       
+          <ion-icon name="filter-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button>
+          <ion-icon name="notifications-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+
+    <ion-toolbar id="search-toolbar">
+      <ion-searchbar placeholder="Busca un producto">        
+      </ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+
+
+  <ion-content>
+  
+    <ion-row id="logo-principal">
+      <ion-col size="12" class="ion-text-center">
+        <h1> INDIANA JEANS</h1>
+      </ion-col>
+    </ion-row>
+
+    <ion-slides>
+      <ion-slide>
+        <img src="https://images.unsplash.com/photo-1542992015-4a0b729b1385?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1489&q=80" alt="">
+      </ion-slide>
+      <ion-slide>
+        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80" alt="">
+      </ion-slide>
+      <ion-slide>
+        <img src="https://images.unsplash.com/photo-1543087903-1ac2ec7aa8c5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1498&q=80" alt="">
+      </ion-slide>
+    </ion-slides>
+
+
+   <!--  ITERACION DE CATEGORIAS -->
+    <ion-row>
+      <!-- <ion-col size=1></ion-col> -->
+      <ion-col size=12>
+        <h4 class="catpro">Categorias</h4>
+
+        <ion-slides>
+          <ion-slide>
+            <ion-col *ngFor="let p of categorias" > <ion-img [src]="p.imagen"></ion-img> <p style="font-size: 12px;"> {{p.nombre }}</p>  </ion-col>       
+          </ion-slide>
+        </ion-slides>
+     </ion-col>
+      <!-- <ion-col size=1></ion-col> -->
+    </ion-row>
+
+    <!-- ITERACION DE PRODUCTOS -->
+
+    <ion-row>
+      <!-- <ion-col size=1></ion-col> -->
+      <ion-col size=12>
+        <h4 class="catpro">Productos</h4>
+
+        <ion-slides>
+          <ion-slide>
+            <ion-col *ngFor="let p of productos"  [routerLink]="['/productos', p.id]"> <ion-img [src]="p.imagen"></ion-img> <p style="font-size: 12px;"> {{"CLP$" + p.precio }}</p>  </ion-col>  
+                 
+          </ion-slide>
+        </ion-slides>
+     </ion-col>
+      <!-- <ion-col size=1></ion-col> -->
+    </ion-row>
+      <!--ION TAB -->
+  
+
+  
+
+</ion-content>
+
+<ion-footer id="footer">
+      
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button [routerLink]="['/home']">
+        <ion-icon name="home-outline"></ion-icon>
+        <ion-label>Inicio</ion-label>
+      
+      </ion-tab-button>
+  
+      <ion-tab-button [routerLink]="['/categorias']">
+        <ion-icon name="list-outline"></ion-icon>
+        <ion-label>Categorias</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button [routerLink]="['/productos']">
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-label>Favoritos</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button>
+        <ion-icon name="person-outline"></ion-icon>
+        <ion-label> {{usuario}}</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-footer>
