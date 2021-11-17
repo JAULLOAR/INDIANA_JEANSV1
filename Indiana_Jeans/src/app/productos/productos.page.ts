@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Producto } from './detalle-productos/producto.model';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-productos',
   templateUrl: './productos.page.html',
@@ -11,19 +12,31 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductosPage implements OnInit {
 
-  ropaPro 
-  private productos = []
-  selectTabs = 'Chaquetas';
+  //recibe TODO DE LA API
+  private productos:any = []
+  private tipo_producto:any = []
+  /* selectTabs = 'Chaquetas'; */
+  rol = localStorage.getItem("saveRol")
+ 
   constructor(private ServicioProducto: ProductosService, private route:Router) { }
 
   ngOnInit() {
-    this.productos = this.ServicioProducto.getProducto();
-    
-    
+    //suscripcion a la API
+    this.ServicioProducto.getProducto().subscribe(
+      (resp)   => {this.productos = resp
+                  console.log(resp)},
+      (error)  => {console.log(error)}
+    );
+  
+  
   }
 
   ionViewWillEnter(){
-    this.productos = this.ServicioProducto.getProducto();
+    this.ServicioProducto.getProducto().subscribe(
+      (resp)   => {this.productos = resp},
+      (error)  => {console.log(error)}
+    ); 
+
     
   }
 
@@ -32,12 +45,16 @@ export class ProductosPage implements OnInit {
     this.route.navigate(['/agregar-producto'])
   }
 
-  filtrarRopa(nombre){
-     this.ropaPro = this.ServicioProducto.filtrarProducto(nombre);
-     this.route.navigate(['/productos/']);
-    console.log(this.ropaPro)
-  }
+  /* filtrarRopa(nombre){
+    this.ropaPro = this.ServicioProducto.filtrarProducto(nombre);
+    this.route.navigate(['/productos/']);
+   console.log(this.ropaPro)
+   this.pf = this.ServicioProducto.filtrarProducto(nombre)
+   
+   
+ } */
 
+ 
   volverCategoria(){
     this.route.navigate(['/categorias/']);
   }

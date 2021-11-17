@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mis compras</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <div *ngFor="let p of carro_compra" >
+    <p>{{p.id}}</p>
+    <p>{{p.Nombre}}</p>
+    <p>{{p.Precio}}</p>
+    <p>{{p.Color}}</p>
+  </div> -->
+
+  
+    <ngx-datatable
+      class="bootstrap"
+      [limit]="8" 
+      [rows]="rows" 
+      [rowHeight]="50" 
+      [columns]="columns"
+      [columnMode]="'force'" 
+      [sortType]="'multi'" 
+      [headerHeight]="50" 
+      [footerHeight]="50">>
+      
+    </ngx-datatable>
+</ion-content>

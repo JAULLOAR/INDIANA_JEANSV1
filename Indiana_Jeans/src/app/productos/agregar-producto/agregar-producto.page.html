@@ -4,20 +4,121 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+
+
+<ion-content >
+
+  
+<!-- <form [formGroup]="registrationForm" (ngSubmit)="submit()"> 
+  <ion-list> 
+    <ion-item>
+  <ion-label> Nombre producto </ion-label>
+  <ion-input type="text" [(ngModel)]="testnombre" formControlName="name"></ion-input>
+  <div *ngFor="let error of errorMessages.name">
+    <ng-container *ngIf="name.hasError(error.type) ">
+      <small class="error-message"> {{error.message}}</small>
+    </ng-container>
+  </div>
+</ion-item>
+  <ion-button type="submit" [disabled]="!registrationForm.valid"> ENVIAR NOMBRE </ion-button>
+  
+</ion-list>
+</form>
+ -->
+
+ <form [formGroup]="registrationForm" (ngSubmit)="submit(nombre,color,imagen,stock,tipo,precio)">
+   <ion-list>
+     <ion-item>
+       <ion-label position="floating"> Nombre producto</ion-label>
+       <ion-input autocapitalize inputmode="text" type="text" formControlName="name" #nombre></ion-input>
+     </ion-item>
+     <div *ngFor="let error of errorMessages.name">
+      <ng-container *ngIf="name.hasError(error.type)">
+        <small class="error-message"> {{error.message}}</small>
+      </ng-container>
+    </div>
+
+     <ion-item>
+      <ion-label position="floating"> Seleccionar </ion-label>
+      <ion-select class="custom-options" #color formControlName="color">
+        <ion-select-option value="Cafe" class="brown-option">Cafe</ion-select-option>
+        <ion-select-option value="Negro">Negro</ion-select-option>
+        <ion-select-option value="Rojo">Rojo</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+ 
+
+    <div *ngIf="registrationForm.controls.color.errors">
+      <small class="error-message"> Campo requerido</small>
+    </div>
+
+   
+    <ion-item>
+      <ion-label > Stock </ion-label>
+      <ion-checkbox [(ngModel)]="seleccion" #stock formControlName="stock"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating"> Seleccionar </ion-label>
+      <ion-select class="custom-options" #tipo formControlName="tipo" >
+        <ion-select-option *ngFor="let tp of tipo_producto" value="{{tp.Descripcion}}" class="brown-option">{{tp.Descripcion}}</ion-select-option>
+        
+      </ion-select>
+    </ion-item>
+
+    <div *ngIf="registrationForm.controls.tipo.errors">
+      <small class="error-message"> Campo requerido</small>
+    </div>
+
+
+    <ion-item>
+      <ion-label position="floating"> Precio producto</ion-label>
+      <ion-input autocapitalize inputmode="number" type="number" formControlName="price" #precio> </ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.price">
+      <ng-container *ngIf="price.hasError(error.type)">
+        <small class="error-message"> {{error.message}}</small>
+      </ng-container>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating"> Imagen del producto</ion-label>
+      <ion-input autocapitalize inputmode="text" type="text" formControlName="image" #imagen> </ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.image">
+      <ng-container *ngIf="image.hasError(error.type)">
+        <small class="error-message"> {{error.message}}</small>
+      </ng-container>
+    </div>
+
+    <ion-button [disabled]="!registrationForm.valid" type="submit" expand="block">
+      Registrar producto
+    </ion-button>
+
+    
+   </ion-list>
+ </form>
+
+<!--  <ion-button >
+
+  <input type="file" (change)="captureImage($event)" accept="image/*">
+</ion-button> -->
+
+
 
   <!-- Default Input -->
-
+<!-- 
 <ion-item>
-  <ion-label position="floating" type="text" >Nombre de producto</ion-label>
+  <ion-label position="floating" type="text" required >Nombre de producto</ion-label>
   <ion-input #nombre></ion-input>
 </ion-item>
 
 <ion-item>
   <ion-label>Select</ion-label>
   <ion-select class="custom-options" interface="popover" #color>
-    <ion-select-option value="cafe" class="brown-option">Cafe</ion-select-option>
-    <ion-select-option value="negro">Negro</ion-select-option>
+    <ion-select-option value="Cafe" class="brown-option">Cafe</ion-select-option>
+    <ion-select-option value="Negro">Negro</ion-select-option>
     <ion-select-option value="Rojo">Rojo</ion-select-option>
   </ion-select>
 </ion-item>
@@ -25,10 +126,6 @@
 
 <ion-list>
 
-  <!-- <ion-item *ngFor="let check of data">
-    <ion-label> {{check.name}}</ion-label>
-    <ion-checkbox [(ngModel)]="check.selected" (click)="seleccion(check)" #stock></ion-checkbox>
-  </ion-item> -->
 
   <ion-item>
     <ion-label> Stock </ion-label>
@@ -52,5 +149,5 @@
 <section>
   <header></header>
   <ion-button expand="block" (click)="agregarP(nombre,color,imagen,stock,precio)">Agregar producto</ion-button>
-</section>
+</section> -->
 </ion-content>

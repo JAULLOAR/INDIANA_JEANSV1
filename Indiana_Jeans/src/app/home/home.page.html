@@ -48,7 +48,7 @@
 
         <ion-slides>
           <ion-slide>
-            <ion-col *ngFor="let p of categorias" > <ion-img [src]="p.imagen"></ion-img> <p style="font-size: 12px;"> {{p.nombre }}</p>  </ion-col>       
+            <ion-col *ngFor="let p of categorias" > <ion-img [src]="p.imagen"></ion-img> <p style="font-size: 12px;"> {{p.Nombre }}</p>  </ion-col>       
           </ion-slide>
         </ion-slides>
      </ion-col>
@@ -64,7 +64,7 @@
 
         <ion-slides>
           <ion-slide>
-            <ion-col *ngFor="let p of productos"  [routerLink]="['/productos', p.id]"> <ion-img [src]="p.imagen"></ion-img> <p style="font-size: 12px;"> {{"CLP$" + p.precio }}</p>  </ion-col>  
+            <ion-col *ngFor="let p of productos"  [routerLink]="['/productos', p.id]"> <ion-img [src]="p.ImagenURL"></ion-img> <p style="font-size: 12px;"> {{"CLP$" + p.Precio }}</p>  </ion-col>  
                  
           </ion-slide>
         </ion-slides>
@@ -98,10 +98,19 @@
         <ion-label>Favoritos</ion-label>
       </ion-tab-button>
   
+      <ion-tab-button [routerLink]="['/carro-compra']">
+        <ion-icon name="wallet-outline"></ion-icon>
+        <ion-label>Compras</ion-label>
+      </ion-tab-button>
+
       <ion-tab-button>
         <ion-icon name="person-outline"></ion-icon>
         <ion-label> {{usuario}}</ion-label>
       </ion-tab-button>
+      
+
+      
+
     </ion-tab-bar>
   </ion-tabs>
 </ion-footer>

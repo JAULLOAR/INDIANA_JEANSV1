@@ -1,0 +1,142 @@
+<ion-header>
+  <ion-toolbar>
+    <ionic-button (click)="volverCategoria()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ionic-button>
+    <ion-title>Actualizar Producto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <form [formGroup]="registrationForm" (ngSubmit)="actualizarProducto(nombre,color,imagen,stock,tipo,precio)">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating"> Nombre producto</ion-label>
+        <ion-input autocapitalize inputmode="text" type="text" formControlName="name" #nombre [(ngModel)]="productos.Nombre"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.name">
+       <ng-container *ngIf="name.hasError(error.type)">
+         <small class="error-message"> {{error.message}}</small>
+       </ng-container>
+     </div>
+ 
+      <ion-item>
+       <ion-label position="floating"> Seleccionar </ion-label>
+       <ion-select class="custom-options" #color formControlName="color" value="{{productos.Color}}">
+         <ion-select-option value="Cafe" class="brown-option">Cafe</ion-select-option>
+         <ion-select-option value="Negro">Negro</ion-select-option>
+         <ion-select-option value="Rojo">Rojo</ion-select-option>
+       </ion-select>
+     </ion-item>
+ 
+     <div *ngIf="registrationForm.controls.color.errors">
+       <small class="error-message"> Campo requerido</small>
+     </div>
+ 
+    
+ 
+     <ion-item>
+       <ion-label > Stock </ion-label>
+       <ion-checkbox [(ngModel)]="seleccion" #stock formControlName="stock"></ion-checkbox>
+     </ion-item>
+
+
+     <ion-item>
+      <ion-label position="floating"> Seleccionar </ion-label>
+      <ion-select class="custom-options" #tipo formControlName="tipo" value="{{productos.tipo}}" >
+        <ion-select-option *ngFor="let tp of tipo_producto"  class="brown-option">{{tp.Descripcion}}</ion-select-option>
+        
+      </ion-select>
+    </ion-item>
+
+ <!--    <div *ngIf="registrationForm.controls.tipo.errors">
+      <small class="error-message"> Campo requerido</small>
+    </div> -->
+     
+
+
+
+    <div *ngIf="registrationForm.controls.color.errors">
+      <small class="error-message"> Campo requerido</small>
+    </div>
+
+
+ 
+     <ion-item>
+       <ion-label position="floating"> Precio producto</ion-label>
+       <ion-input autocapitalize inputmode="number" type="number" formControlName="price" #precio [(ngModel)]="productos.Precio"> </ion-input>
+     </ion-item>
+     <div *ngFor="let error of errorMessages.price">
+       <ng-container *ngIf="price.hasError(error.type)">
+         <small class="error-message"> {{error.message}}</small>
+       </ng-container>
+     </div>
+ 
+     <ion-item>
+       <ion-label position="floating"> Imagen del producto</ion-label>
+       <ion-input autocapitalize inputmode="text" type="text" formControlName="image" #imagen [(ngModel)]="productos.ImagenURL"> </ion-input>
+     </ion-item>
+     <div *ngFor="let error of errorMessages.image">
+       <ng-container *ngIf="image.hasError(error.type)">
+         <small class="error-message"> {{error.message}}</small>
+       </ng-container>
+     </div>
+ 
+     <ion-button [disabled]="!registrationForm.valid" type="submit" expand="block">
+       Registrar producto
+     </ion-button>
+ 
+     
+    </ion-list>
+  </form>
+ 
+
+  <!-- Default Input -->
+
+<!-- <ion-item>
+  <ion-label position="floating" type="text"  >Nombre de producto</ion-label>
+  <ion-input #nombre [(ngModel)]="productos.Nombre"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label>Select</ion-label>
+  <ion-select class="custom-options" interface="popover" #color value="{{productos.Color}}">
+    <ion-select-option value="Cafe" class="brown-option">Cafe</ion-select-option>
+    <ion-select-option value="Negro">Negro</ion-select-option>
+    <ion-select-option value="Rojo">Rojo</ion-select-option>
+  </ion-select>
+</ion-item>
+
+
+<ion-list>
+
+
+    <ion-label> Stock </ion-label>
+    
+    <ion-checkbox [(ngModel)]="seleccion" (ionChange)="updateValor()"></ion-checkbox>
+   
+  </ion-item>
+
+
+</ion-list>
+
+
+<ion-item>
+  <ion-label>Producto</ion-label>
+  <ion-input placeholder="" type="number" #precio [(ngModel)]="productos.Precio"> </ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating" type="text" >Imagen de producto</ion-label>
+  <ion-input #imagen [(ngModel)]="productos.ImagenURL"></ion-input>
+</ion-item>
+
+<section>
+  <header></header>
+  <ion-button expand="block" (click)="agregarP(nombre,color,imagen,stock,precio)">Editar producto</ion-button>
+</section>
+ -->
+
+</ion-content>

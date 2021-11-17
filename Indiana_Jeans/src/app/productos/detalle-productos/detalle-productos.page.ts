@@ -4,6 +4,9 @@ import { ProductosService } from '../productos.service';
 import { Producto } from './producto.model';
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
+
+
+
 @Component({
   selector: 'app-detalle-productos',
   templateUrl: './detalle-productos.page.html',
@@ -12,8 +15,11 @@ import { ToastController } from '@ionic/angular';
 export class DetalleProductosPage implements OnInit {
 
   datosAr : Producto
+  productos:any = []
   usuario = localStorage.getItem("saveLog")
-
+  rol = localStorage.getItem("saveRol")
+  carro = localStorage.getItem("carros")
+  carro_compra:any = []
   constructor(private activatedRoute: ActivatedRoute, private productoServicio: ProductosService, private route:Router,
      public alertController: AlertController, public toastController : ToastController) { }
 
@@ -23,20 +29,45 @@ export class DetalleProductosPage implements OnInit {
 
       const valor = parseInt(paramMap.get('id')) 
       
-
-      this.datosAr =  this.productoServicio.getProductoById(valor)
-      console.log(this.datosAr)
-
+      this.productoServicio.getProductoById(valor).subscribe(
+        (resp) => {this.productos = resp
+                  console.log(resp)}
+        
+      )
     } )
+
+
   }
 
   eliminar(){
 
     console.log ("eliminado")
-    this.productoServicio.deleteProducto(this.datosAr.id)
-    this.route.navigate(['/productos/']);
+  
+
+    this.activatedRoute.paramMap.subscribe( paramMap => {
+
+      const valor = parseInt(paramMap.get('id')) 
+      
+      this.productoServicio.deleteProducto(valor)
+      this.route.navigate(['/productos'])
+
+    console.log(valor)
+
+    } )    
+  }
+
+  editar(){
+    /* this.route.navigate(['/productos/']); */
+    this.activatedRoute.paramMap.subscribe( paramMap => {
+
+      const valor = parseInt(paramMap.get('id')) 
+      
+      this.route.navigate(['/productos/actualizar-producto/' + valor]);
+
     
-    
+
+    } )  
+
   }
 
   async openToast(){
@@ -56,9 +87,16 @@ export class DetalleProductosPage implements OnInit {
         {
           text: 'Si, comprar',
           handler: () => {
+            let nombre = this.productos["Nombre"]
+            let precio = this.productos["Precio"]
+            let usuario = this.usuario
+            let color = this.productos["Color"]
+            let tipo = this.productos["tipo"]
+            this.productoServicio.compra_producto(nombre,precio,usuario,color,tipo)
+            console.log(usuario) 
             this.openToast();
-            this.route.navigate(['/home/']);
-
+            this.route.navigate(['/home/']); 
+            
           }
         },
         {
